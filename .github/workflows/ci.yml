@@ -11,6 +11,13 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# NOTE: The placeholder steps below FAIL on purpose until you replace them
+# with real commands. A check that always passes without verifying anything
+# is worse than no check — combined with branch protection it becomes a
+# safety net that catches nothing. Likewise, do not mark this workflow as a
+# required status check until the real commands are in place (a skipped
+# required check also passes silently).
+
 jobs:
   build-and-test:
     name: Build & Test
@@ -19,7 +26,7 @@ jobs:
     # Uncomment and customize for matrix builds (e.g. multiple Node/Python versions)
     # strategy:
     #   matrix:
-    #     node-version: [18, 20, 22]
+    #     node-version: [22, 24]
 
     steps:
       - name: Checkout
@@ -32,7 +39,7 @@ jobs:
       # - name: Setup Node.js
       #   uses: actions/setup-node@v4
       #   with:
-      #     node-version: 20
+      #     node-version: 22
       #     cache: npm
 
       # Python
@@ -61,14 +68,16 @@ jobs:
           # npm ci
           # pip install -r requirements.txt
           # go mod download
-          echo "Replace this step with your install command"
+          echo "::error::CI is not configured yet. Replace this placeholder with your install command."
+          exit 1
 
       # --- Lint ---
       - name: Lint
         run: |
           # TODO: replace with your lint command
           # npm run lint
-          echo "Replace this step with your lint command"
+          echo "::error::CI is not configured yet. Replace this placeholder with your lint command."
+          exit 1
 
       # --- Test ---
       - name: Test
@@ -77,4 +86,5 @@ jobs:
           # npm test
           # pytest
           # go test ./...
-          echo "Replace this step with your test command"
+          echo "::error::CI is not configured yet. Replace this placeholder with your test command."
+          exit 1
