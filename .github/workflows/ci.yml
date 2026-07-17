@@ -22,6 +22,10 @@ jobs:
   build-and-test:
     name: Build & Test
     runs-on: ubuntu-latest
+    # Skip on the template repository itself (the placeholder steps below fail
+    # by design). Repositories created from this template run normally; this
+    # line is harmless to keep, but feel free to remove it.
+    if: github.repository != 'KeisukeNAITO/github-template-oss'
 
     # Uncomment and customize for matrix builds (e.g. multiple Node/Python versions)
     # strategy:
